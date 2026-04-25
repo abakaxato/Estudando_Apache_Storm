@@ -5,8 +5,8 @@ import org.apache.storm.topology.TopologyBuilder;
 public class Main {
     public static void main(String[] args) throws Exception {
         TopologyBuilder builder = new TopologyBuilder();
-        builder.setSpout("yahooSpout", new YahooSpout());
-        builder.setBolt("yahooBolt", new YahooBolt()).shuffleGrouping("yahooSpout");
+        builder.setSpout("YahooSpout", new BrapiSpout());
+        builder.setBolt("YahooBolt", new BrapiBolt()).shuffleGrouping("YahooSpout");
 
         Config conf = new Config();
         conf.setDebug(true);
