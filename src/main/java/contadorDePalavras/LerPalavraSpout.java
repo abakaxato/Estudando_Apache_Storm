@@ -6,7 +6,7 @@ import org.apache.storm.topology.base.BaseRichSpout;
 
 import java.util.Map;
 
-public class lerPalavraSpout extends BaseRichSpout {
+public class LerPalavraSpout extends BaseRichSpout {
     @Override
     public void open(Map<String, Object> conf, TopologyContext context, SpoutOutputCollector collector) {
 
