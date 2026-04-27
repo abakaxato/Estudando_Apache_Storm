@@ -5,8 +5,8 @@ import org.apache.storm.topology.TopologyBuilder;
 public class Main {
     public static void main(String[] args) throws Exception {
         TopologyBuilder builder = new TopologyBuilder();
-        builder.setSpout("YahooSpout", new BrapiSpout());
-        builder.setBolt("YahooBolt", new BrapiBolt()).shuffleGrouping("YahooSpout");
+        builder.setSpout("brapiSpout", new BrapiSpout());
+        builder.setBolt("brapiBolt", new BrapiBolt()).shuffleGrouping("brapiSpout");
 
         Config conf = new Config();
         conf.setDebug(true);
@@ -14,7 +14,7 @@ public class Main {
         LocalCluster cluster = new LocalCluster();
 
         try{
-            cluster.submitTopology("TopologiaYahoo",conf,builder.createTopology());
+            cluster.submitTopology("TopologiaBrapi",conf,builder.createTopology());
             Thread.sleep(50000);
         }
         finally {

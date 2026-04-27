@@ -21,13 +21,13 @@ public class BrapiBolt extends BaseBasicBolt {
 
         if (valorMedio <= valorOntem){
             ganho = false;
-            System.out.println("vish, ganhasse nada de diferença");
+            System.out.println("\nvish, ganhasse nada de diferença\n");
         }else{
-            System.out.println("Ae sim, teve um ganho !");
+            System.out.println("\nAe sim, teve um ganho !");
             System.out.println(empresa);
             System.out.println(timestamp);
             System.out.println(valorMedio);
-            System.out.println(ganho);
+            System.out.println(ganho + "\n");
             collector.emit(new Values(empresa,timestamp,valorMedio,ganho));
         }
     }

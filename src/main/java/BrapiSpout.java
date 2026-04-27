@@ -59,7 +59,7 @@ public class BrapiSpout extends BaseRichSpout{
                 Thread.sleep(10000);
                 }
         }catch (Exception e){
-            System.out.println("Deu Erro Paizao"+ e.getMessage());
+            System.out.println("\nDeu Erro Paizao\n"+ e.getMessage());
             try{
                 Thread.sleep(30000);
             }catch (InterruptedException ie){
