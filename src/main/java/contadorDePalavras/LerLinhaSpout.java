@@ -20,10 +20,11 @@ public class LerLinhaSpout extends BaseRichSpout {
     private boolean complete = false;
     @Override
     public void open(Map<String, Object> conf, TopologyContext context, SpoutOutputCollector collector) {
+        this.collector = collector;
         try{
-            this.fileReader = new FileReader(conf.get("diretorioDeLeitura"+".").toString());
+            this.fileReader = new FileReader(conf.get("diretorioDeLeitura").toString());
         }catch (FileNotFoundException fn){
-            throw new RuntimeException("Erro ao ler o arquivo " + conf.get("diretorioDeLeitura" + "."));
+            throw new RuntimeException("Erro ao ler o arquivo :" + conf.get("diretorioDeLeitura" + "."));
         }
         this.reader = new BufferedReader(fileReader);
     }
