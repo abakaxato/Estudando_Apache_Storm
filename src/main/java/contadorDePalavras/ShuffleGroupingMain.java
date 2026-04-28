@@ -8,8 +8,8 @@ public class ShuffleGroupingMain {
     public static void main (String[] args) throws Exception {
 
         TopologyBuilder builder = new TopologyBuilder();
-        builder.setSpout("lerPalavraSpout", new LerPalavraSpout());
-        builder.setBolt("contarPalavraBolt", new ContarPalavraBolt(),2).
+        builder.setSpout("lerPalavraSpout", new LerLinhaSpout());
+        builder.setBolt("contarPalavraBolt", new ContarLinhaBolt(),2).
                 shuffleGrouping("lerPalavra");
 
         Config conf = new Config();

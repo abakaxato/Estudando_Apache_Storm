@@ -3,6 +3,7 @@ import org.apache.storm.spout.SpoutOutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseRichSpout;
+import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Values;
 
 import java.io.BufferedReader;
@@ -10,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Map;
 
-public class LerPalavraSpout extends BaseRichSpout {
+public class LerLinhaSpout extends BaseRichSpout {
 
     private SpoutOutputCollector collector;
 
@@ -29,23 +30,25 @@ public class LerPalavraSpout extends BaseRichSpout {
 
     @Override
     public void nextTuple() {
-    if(!complete){
-        try {
-            String palavra = reader.readLine();
-            if(palavra != null){
-                palavra = palavra.trim();
-                palavra = palavra.toLowerCase();
-                collector.emit(new Values(palavra));
+        if(!complete){
+            try {
+                String linha = reader.readLine();
+                if(linha != null){
+                    linha = linha.trim();
+                    linha = linha.toLowerCase();
+                    collector.emit(new Values(linha));
+                }else{
+                    complete = true;
+                    fileReader.close();
+                }
+            }catch (Exception e){
+                throw new RuntimeException("Erro ao ler tupla", e);
             }
-        }catch (Exception e){
-            throw new RuntimeException("Erro ao ler tupla", e);
         }
-    }
-
     }
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-
+    declarer.declare(new Fields("linha"));
     }
 }

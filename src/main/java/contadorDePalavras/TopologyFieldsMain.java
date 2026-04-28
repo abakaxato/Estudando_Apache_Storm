@@ -8,8 +8,8 @@ import org.apache.storm.tuple.Fields;
 public class TopologyFieldsMain {
     public static void main (String[] args) throws Exception {
         TopologyBuilder builder = new TopologyBuilder();
-        builder.setSpout("lerPalavraSpout", new LerPalavraSpout());
-        builder.setBolt("contarPalavraBolt", new ContarPalavraBolt(),2).
+        builder.setSpout("lerPalavraSpout", new LerLinhaSpout());
+        builder.setBolt("contarPalavraBolt", new ContarLinhaBolt(),2).
                 fieldsGrouping("lerPalavra", new Fields());
 
         Config conf = new Config();
