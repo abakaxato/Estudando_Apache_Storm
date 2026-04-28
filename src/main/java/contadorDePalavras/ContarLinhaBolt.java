@@ -4,7 +4,6 @@ import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.BasicOutputCollector;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseBasicBolt;
-import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 
 import java.io.PrintWriter;
@@ -24,8 +23,8 @@ public class ContarLinhaBolt extends BaseBasicBolt{
         this.nome = context.getThisComponentId();
         this.id = context.getThisTaskId();
         this.nomeArquivo = (stormConf.get("diretorioDeResultado").toString() + "saida - " + nome + id + ".txt");
-
     }
+
     @Override
     public void execute(Tuple input, BasicOutputCollector collector) {
         String linha = input.getString(0);
@@ -40,12 +39,15 @@ public class ContarLinhaBolt extends BaseBasicBolt{
     public void cleanup(){
         try{
             PrintWriter writer = new PrintWriter(nomeArquivo,"UTF-8");
-            for(Map)
+            for(Map.Entry<String,Integer> entry : contagem.entrySet()){
+                writer.println(entry.getKey()+":"+entry.getValue());
+            }
+            writer.close();
+        }catch (Exception e){
+            System.out.println("\nDeu Ruim na escrita :" + e + "\n");
         }
     }
 
     @Override
-    public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("linha"));
-    }
+    public void declareOutputFields(OutputFieldsDeclarer declarer) {}
 }
