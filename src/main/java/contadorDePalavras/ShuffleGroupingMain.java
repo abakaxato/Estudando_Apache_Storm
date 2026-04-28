@@ -14,12 +14,12 @@ public class ShuffleGroupingMain {
 
         Config conf = new Config();
         conf.put("diretorioDeLeitura","/home/vboxuser/ExemploEntrada.txt");
-        conf.put("diretorioDeResultado","/home/vboxuser/ExemploSaida.txt");
+        conf.put("diretorioDeResultado", "/home/vboxuser/Storm/Saidas");
         conf.setDebug(true);
         LocalCluster cluster = new LocalCluster();
         try {
             cluster.submitTopology("shuffleGrouping - Topologia Conagem De Palavras",conf,builder.createTopology());
-            Thread.sleep(10000);
+            Thread.sleep(50000);
         }catch (Exception e){
             System.out.println("\ndeu erro ae\n"+ e);
         }finally{

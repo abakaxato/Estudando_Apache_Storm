@@ -5,7 +5,7 @@ import org.apache.storm.LocalCluster;
 import org.apache.storm.topology.TopologyBuilder;
 
 public class CustomMain {
-    /*public static void main (String[] args) throws Exception {
+    public static void main (String[] args) throws Exception {
         TopologyBuilder builder = new TopologyBuilder();
         builder.setSpout("lerPalavraSpout", new LerPalavraSpout());
         builder.setBolt("contarPalavraBolt", new ContarPalavraBolt(), 2).
@@ -13,16 +13,16 @@ public class CustomMain {
 
         Config conf = new Config();
         conf.put("diretorioDeLeitura", "/home/vboxuser/ExemploEntrada.txt");
-        conf.put("diretorioDeResultado", "/home/vboxuser/ExemploSaida.txt");
+        conf.put("diretorioDeResultado", "/home/vboxuser/Storm/Saidas");
         conf.setDebug(true);
         LocalCluster cluster = new LocalCluster();
         try {
             cluster.submitTopology("customGrouping - Topologia Conagem De Palavras", conf, builder.createTopology());
-            Thread.sleep(10000);
+            Thread.sleep(50000);
         } catch (Exception e) {
             System.out.println("\ndeu erro ae\n" + e);
         } finally {
             cluster.shutdown();
         }
     }
-*/}
+}
