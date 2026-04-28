@@ -10,15 +10,15 @@ public class ShuffleGroupingMain {
         TopologyBuilder builder = new TopologyBuilder();
         builder.setSpout("lerPalavraSpout", new LerLinhaSpout());
         builder.setBolt("contarPalavraBolt", new ContarLinhaBolt(),2).
-                shuffleGrouping("lerPalavra");
+                shuffleGrouping("lerPalavraSpout");
 
         Config conf = new Config();
-        conf.put("diretorioDeLeitura","/home/vboxuser/ExemploEntrada.txt");
-        conf.put("diretorioDeResultado", "/home/vboxuser/Storm/Saidas");
+        conf.put("diretorioDeLeitura","/home/vboxuser/Storm/ExemploEntrada.txt");
+        conf.put("diretorioDeResultado", "/home/vboxuser/Storm/Saidas/");
         conf.setDebug(true);
         LocalCluster cluster = new LocalCluster();
         try {
-            cluster.submitTopology("shuffleGrouping - Topologia Conagem De Palavras",conf,builder.createTopology());
+            cluster.submitTopology("shuffleGrouping - Topologia Contagem De Palavras",conf,builder.createTopology());
             Thread.sleep(50000);
         }catch (Exception e){
             System.out.println("\ndeu erro ae\n"+ e);
